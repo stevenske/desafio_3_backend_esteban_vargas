@@ -61,11 +61,22 @@ class Container {
             console.log(error)
         }
     }
+    async getRandom(){
+        const products = await this.getAll()
+        return this.checkLength(products) ? products[Math.floor(Math.random() * products.length)] : null
+    }
+    checkLength(arr){
+        if (arr.length === 0){
+            console.error('The array is empty')
+            return false
+        }
+        return true
+    }
 }
 
 const file = new Container('products.json')
 
-
+module.exports = Container;
 
 // save new product on file products.json //
 
